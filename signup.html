@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up - Express</title>
+  <link rel="stylesheet" href="signup.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+  />
+</head>
+<body>
+  <header class="header-nav">
+    <div class="logo-container">
+      <img class="logo-icon" src="images/logo 1.png" alt="Express Logo" />
+      <span class="express-text">Express</span>
+    </div>
+  </header>
+  <main class="main-container">
+    <div class="signup-card">
+      <h1 class="form-title">Sign in or create an account</h1>
+      <form class="signup-form" id="signupForm">
+        <div class="required-notice">*indicates required field</div>
+        <div class="form-group">
+          <label class="form-label" for="email">*User name or email address</label>
+          <input type="text" id="email" name="email" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <div class="password-label-container">
+            <label class="form-label" for="password">*Password</label>
+            <div class="password-toggle">
+              <span class="hide-icon">👁</span>
+              <span class="toggle-text">Hide</span>
+            </div>
+          </div>
+          <input type="text" id="password" name="password" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <div class="keep-signed-in">
+            <input type="checkbox" id="keepSignedIn" name="keepSignedIn" checked />
+            <label for="keepSignedIn" class="keep-label">
+              Keep me sign in
+              <span class="info-icon" id="infoIcon">ⓘ</span>
+            </label>
+          </div>
+        </div>
+        <div class="info-tooltip" id="infoTooltip">
+          Checking this box will reduce the number of times you're asked to sign in. To keep your
+          account secure, use this option only on your personal devices.
+        </div>
+        <div class="additional-links">
+          <a href="#" class="forgot-password">Forget your username?</a>
+          <a href="#" class="forgot-password">Forget your password?</a>
+        </div>
+        <button type="submit" class="signup-button">Sign in</button>
+      </form>
+    </div>
+  </main>
+  <script src="signup.js"></script>
+</body>
+</html>
