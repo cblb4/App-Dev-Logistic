@@ -1,72 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Express | Delivery Service</title>
-    <link rel="stylesheet" href="login.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Express</title>
+  <link rel="stylesheet" href="login.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+  />
 </head>
 <body>
-    <div class="header-nav">
-        <div class="divider"></div>
-        <div class="express">Express</div>
-        <img class="logo-1-icon" alt="Logo" src="images/logo 1.png">
+  <header class="header-nav">
+    <div class="logo-container">
+      <img class="logo-icon" src="images/logo 1.png" alt="Express Logo" />
+      <span class="express-text">Express</span>
     </div>
-    <div class="log-in-parent">
-<div class="log-in">Log in</div>
-<div class="email-parent">
-<div class="email">
-<div class="label-wrapper">
-<div class="label">Email address or user name</div>
-</div>
-<div class="text-field">
-</div>
-</div>
-<div class="text-field-parent">
-<div class="email">
-<div class="label-wrapper">
-<div class="label">Password</div>
-<div class="password-hide-see">
-<div class="icon">
-<img class="icon-child" alt="" src="Group 1.svg">
-</div>
-<div class="hide">Hide</div>
-</div>
-</div>
-<div class="text-field">
-</div>
-</div>
-<div class="check-box">
-<div class="check-box1">
-<img class="vector-icon" alt="" src="Vector.svg">
-<img class="vector-icon1" alt="" src="Vector.svg">
-</div>
-<div class="i-want-to">Remember me</div>
-</div>
-</div>
-<div class="link-text-parent">
-<div class="link-text">
-<div class="i-want-to">
-<span class="by-continuing-you">By continuing, you agree to the </span>
-<span class="terms-of-use">Terms of use</span>
-<span class="span"> </span>
-<span class="by-continuing-you">and</span>
-<span class="span"> </span>
-<span class="terms-of-use">
-<span>Privacy Policy.</span>
-<span class="span"> </span>
-</span>
-</div>
-</div>
-<div class="button">
-<div class="sign-up-wrapper">
-<div class="log-in">Log in</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+  </header>
+  <main class="main-container">
+    <div class="login-card">
+      <h1 class="login-title">Log in</h1>
+      <form class="login-form" id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="email">Email address or username</label>
+          <input type="text" id="email" name="email" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <div class="password-label-container">
+            <label class="form-label" for="password">Password</label>
+            <div class="password-toggle">
+              <input type="checkbox" id="togglePassword" />
+              <label for="togglePassword" class="toggle-label">Show Password</label>
+            </div>
+          </div>
+          <input type="password" id="password" name="password" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <div class="remember-me">
+            <input type="checkbox" id="rememberMe" name="rememberMe" />
+            <label for="rememberMe" class="remember-label">Remember me</label>
+          </div>
+        </div>
+        <div class="terms-text">
+          By continuing, you agree to the
+          <a href="#" class="link">Terms of use</a>
+          and
+          <a href="#" class="link">Privacy Policy</a>.
+        </div>
+        <button type="submit" class="login-button">Log in</button>
+      </form>
+      <div class="additional-links">
+        <a href="#" class="forgot-password">Forget your password?</a>
+        <div class="signup-link">
+          Don't have an account?
+          <a href="#" class="link">Sign up</a>
+        </div>
+      </div>
+      <div class="divider-container">
+        <div class="divider-line"></div>
+        <span class="divider-text">Or continue with</span>
+        <div class="divider-line"></div>
+      </div>
+      <div class="social-buttons">
+        <button type="button" class="social-button facebook" aria-label="Continue with Facebook">
+          <span class="social-icon">f</span>
+        </button>
+        <button type="button" class="social-button google" aria-label="Continue with Google">
+          <span class="social-icon">G</span>
+        </button>
+        <button type="button" class="social-button twitter" aria-label="Continue with Twitter">
+          <span class="social-icon">𝕏</span>
+        </button>
+      </div>
+    </div>
+  </main>
+  <script src="login.js"></script>
 </body>
 </html>
