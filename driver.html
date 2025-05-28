@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Dashboard - Drivers</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="driver.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="images/logo 1.png" alt="Express Logo" class="logo-icon">
+                <span class="logo-text">Express</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>Driver</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-box"></i>
+                        <span>Package</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-truck"></i>
+                        <span>Delivery</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-id-card"></i>
+                        <span>Verify Identity</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-bottom">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search" class="search-input">
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">2</span>
+                </div>
+                <div class="user-profile">
+                    <img src="images/profile.jpg" alt="John Doe" class="profile-avatar">
+                    <div class="user-info">
+                        <span class="user-name">John Doe</span>
+                        <span class="user-role">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="dashboard-content">
+            <div class="drivers-header">
+                <h1 class="page-title">Drivers</h1>
+                <button class="add-driver-btn" id="addDriverBtn">
+                    <i class="fas fa-plus"></i>
+                    Add Driver
+                </button>
+            </div>
+            <div class="drivers-table-container">
+                <table class="drivers-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="selectAll" class="table-checkbox">
+                            </th>
+                            <th>S/N</th>
+                            <th>USER</th>
+                            <th>CONTACT NUMBER</th>
+                            <th>CIVIL STATUS</th>
+                            <th>JOINED DATE</th>
+                            <th>LAST LOGIN</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="driversTableBody">
+                        <!-- naa sa js ang kuan para mag populate sa table-->
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-container">
+                <div class="pagination-info">
+                    Showing 1 to 7 of 8 entries
+                </div>
+                <div class="pagination">
+                    <button class="pagination-btn prev" id="prevBtn">Previous</button>
+                    <button class="pagination-btn active" data-page="1">1</button>
+                    <button class="pagination-btn next" id="nextBtn">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="modal-overlay" id="driverModal">
+        <div class="modal-content driver-modal">
+            <div class="modal-header">
+                <div class="driver-modal-info">
+                    <img src="images/driver1.jpg" alt="Driver" class="modal-driver-avatar" id="modalDriverAvatar">
+                    <div class="modal-driver-details">
+                        <h2 class="modal-driver-name" id="modalDriverName">Robert Doe</h2>
+                        <span class="modal-driver-role">Rider</span>
+                    </div>
+                </div>
+                <button class="remove-user-btn" id="removeUserBtn">
+                    <i class="fas fa-trash"></i>
+                    Remove User
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="driver-info-grid">
+                    <div class="info-item">
+                        <label>USER ID</label>
+                        <div class="info-value">
+                            <span id="modalUserId">255249345428448</span>
+                            <button class="copy-btn" onclick="copyToClipboard('modalUserId')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <label>Contact Number</label>
+                        <div class="info-value">
+                            <span id="modalContactNumber">09**********</span>
+                            <button class="toggle-visibility-btn" onclick="toggleVisibility('modalContactNumber')">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Civil Status</label>
+                        <span class="info-value" id="modalCivilStatus">Unverified</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Email</label>
+                        <span class="info-value" id="modalEmail">email@example.com</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label>Last login</label>
+                        <span class="info-value" id="modalLastLogin">28th Dec. 2023</span>
+                    </div>
+                </div>
+                <div class="driver-description">
+                    <p>E change lang unya</p>
+                    <p>hehee</p>
+                </div>
+                <div class="driver-documents">
+                    <button class="view-documents-btn" id="viewDocumentsBtn">
+                        <i class="fas fa-file-alt"></i>
+                        View documents
+                    </button>
+                </div>
+            </div>
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="modal-overlay" id="addDriverModal">
+        <div class="modal-content add-driver-modal">
+            <div class="modal-header">
+                <h2>Add New Driver</h2>
+                <button class="modal-close" id="closeAddDriverModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addDriverForm" enctype="multipart/form-data">
+                    <div class="form-section">
+                        <h3 class="section-title">Personal Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactNumber">Contact Number *</label>
+                                <input type="tel" id="contactNumber" name="contactNumber" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="civilStatus">Civil Status</label>
+                                <select id="civilStatus" name="civilStatus">
+                                    <option value="single">Single</option>
+                                    <option value="married">Married</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="widowed">Widowed</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of Birth</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3 class="section-title">Address Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="address">Complete Address *</label>
+                                <textarea id="address" name="address" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="province">Province *</label>
+                                <input type="text" id="province" name="province" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">ZIP Code *</label>
+                                <input type="text" id="zipCode" name="zipCode" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3 class="section-title">Profile Photo</h3>
+                        <div class="photo-upload-container">
+                            <div class="photo-preview" id="photoPreview">
+                                <i class="fas fa-user-circle"></i>
+                                <span>No photo selected</span>
+                            </div>
+                            <div class="upload-controls">
+                                <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" style="display: none;">
+                                <button type="button" class="upload-btn" onclick="document.getElementById('profilePhoto').click()">
+                                    <i class="fas fa-camera"></i>
+                                    Choose Photo
+                                </button>
+                                <button type="button" class="remove-photo-btn" id="removePhotoBtn" style="display: none;">
+                                    <i class="fas fa-trash"></i>
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3 class="section-title">Documents</h3>
+                        <div class="document-uploads">
+                            <div class="document-upload-item">
+                                <label>Resume/CV</label>
+                                <div class="file-upload-area" data-upload="resume">
+                                    <input type="file" id="resumeFile" name="resumeFile" accept=".pdf,.doc,.docx" style="display: none;">
+                                    <i class="fas fa-file-upload"></i>
+                                    <span class="upload-text">Click to upload or drag and drop</span>
+                                    <small>PDF, DOC, DOCX (Max 5MB)</small>
+                                </div>
+                                <div class="file-info" id="resumeInfo" style="display: none;"></div>
+                            </div>
+                            <div class="document-upload-item">
+                                <label>Driver's License</label>
+                                <div class="file-upload-area" data-upload="license">
+                                    <input type="file" id="licenseFile" name="licenseFile" accept="image/*,.pdf" style="display: none;">
+                                    <i class="fas fa-id-card"></i>
+                                    <span class="upload-text">Click to upload or drag and drop</span>
+                                    <small>Image or PDF (Max 5MB)</small>
+                                </div>
+                                <div class="file-info" id="licenseInfo" style="display: none;"></div>
+                            </div>
+                            <div class="document-upload-item">
+                                <label>Other Documents (Optional)</label>
+                                <div class="file-upload-area" data-upload="other">
+                                    <input type="file" id="otherFiles" name="otherFiles" multiple accept="*/*" style="display: none;">
+                                    <i class="fas fa-folder-plus"></i>
+                                    <span class="upload-text">Click to upload or drag and drop</span>
+                                    <small>Any file type (Max 5MB each)</small>
+                                </div>
+                                <div class="file-info" id="otherInfo" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" id="cancelAddDriver">Cancel</button>
+                        <button type="submit" class="btn-submit" id="submitAddDriver">
+                            <i class="fas fa-plus"></i>
+                            Add Driver
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="documentViewerModal">
+        <div class="modal-content document-viewer-modal">
+            <div class="document-viewer-header">
+                <h2 class="document-viewer-title">Driver Documents</h2>
+                <button class="modal-close" id="closeDocumentViewer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="document-viewer-body">
+                <div class="document-tabs" id="documentTabs">
+                </div>
+                <div class="document-content" id="documentContent">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="navigation.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="driver.js"></script>
+</body>
+</html>
